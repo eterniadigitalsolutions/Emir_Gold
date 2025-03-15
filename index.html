@@ -38,7 +38,15 @@
 </head>
 
 <body>
-
+  <div class="overlay">
+    <div class="overlay-content">
+      <h1>Website Under Construction</h1>
+      <p>We will be back soon!</p>
+      <div class="loader"></div>
+      <button class="close-btn" onclick="closeOverlay()">Close</button>
+    </div>
+  </div>
+  
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
@@ -998,7 +1006,12 @@
       }
     });
   </script>
-
+   <script>
+    function closeOverlay() {
+      document.querySelector(".overlay").style.display = "none";
+    }
+  </script>
+  
 </body>
 
 </html>
