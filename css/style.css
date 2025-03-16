@@ -1335,6 +1335,18 @@ a:focus {
 }
 
 /* Scroll to Top Button */
+/* Floating Icons Container */
+.floating-icons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Align to the bottom-right corner */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 10px; /* Space between icons */
+  align-items: center;
+}
+
+/* Scroll to Top Button */
 .top-arrow {
   background-color: #b8860b;
   color: white;
@@ -1346,6 +1358,13 @@ a:focus {
   cursor: pointer;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
+
+  /* Center the arrow inside the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 50px;
 }
 
 .top-arrow:hover {
