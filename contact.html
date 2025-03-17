@@ -23,6 +23,8 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <!-- email js api -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -146,31 +148,31 @@
             </div>
             <!-- Contact Form -->
             <div class="col-md-7">
-                <div class="contact-form">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Name" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <input type="email" class="form-control" placeholder="E-Mail" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Phone" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Subject" required>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <textarea class="form-control" placeholder="Message" rows="4" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn w-100">Submit Now</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+              <div class="contact-form">
+                  <form id="contact-form">  <!-- Added ID to form -->
+                      <div class="row">
+                          <div class="col-md-6 mb-3">
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <input type="email" name="email" id="email" class="form-control" placeholder="E-Mail" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
+                          </div>
+                          <div class="col-12 mb-3">
+                              <textarea class="form-control" name="message" id="message" placeholder="Message" rows="4" required></textarea>
+                          </div>
+                          <div class="col-12">
+                              <button type="submit" class="btn w-100">Submit Now</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
         </div>
     </div>
   </div>
@@ -206,11 +208,11 @@
                 QUICK LINKS
               </h4>
               <div class="info_links_menu">
-                <a class="" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="" href="#">Services</a>
-                <a class="" href="#"> About</a>
-                <a class="" href="#">Testimonial</a>
-                <a class="" href="#">Contact Us</a>
+                <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="" href="service.html">Services</a>
+                <a class="" href="about.html"> About</a>
+                <a class="" href="gallery.html">Gallery</a>
+                <a class="" href="contact.html">Contact Us</a>
               </div>
             </div>
           </div>
@@ -348,5 +350,33 @@
 <script src="https://huynhhuynh.github.io/owlcarousel2-filter/dist/owlcarousel2-filter.min.js"></script>
 <!-- custom js -->
 <script src="js/custom.js"></script>
+
+
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form reload
+
+      emailjs.init("nFKvKX4P0TYTU5qVv"); // Your Public Key
+
+      const formData = {
+          name: document.querySelector('input[name="name"]').value,
+          email: document.querySelector('input[name="email"]').value,
+          phone: document.querySelector('input[name="phone"]').value,
+          message: document.querySelector('textarea[name="message"]').value
+      };
+
+      console.log("Sending email with data:", formData); // Debugging
+
+      emailjs.send("service_uscr083", "template_0syyxnj", formData)
+          .then(function(response) {
+              console.log("Success!", response);
+              alert("Email sent successfully!");
+              document.getElementById("contact-form").reset();
+          }, function(error) {
+              console.error("Failed", error);
+              alert("Failed to send email: " + error.text);
+          });
+  });
+</script>
 </body>
 </html>
